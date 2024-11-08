@@ -3,7 +3,7 @@ name: Bike Tracker
 on:
   schedule:
     # Runs every 5 minutes between 8:00 AM and 10:00 AM ET (12:00 PM - 2:00 PM UTC)
-    - cron: '18-30/5 21 * * *'
+    - cron: '20-30/5 21 * * *'
 
 jobs:
   track_bikes:
