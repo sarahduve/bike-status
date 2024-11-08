@@ -3,7 +3,7 @@ name: Bike Tracker
 on:
   schedule:
     # Runs every 5 minutes between 8:00 AM and 10:00 AM ET (12:00 PM - 2:00 PM UTC)
-    - cron: '*/5 13-14 * * *'
+    - cron: '*/5 16 * * *'
 
 jobs:
   track_bikes:
@@ -24,7 +24,7 @@ jobs:
       run: pip install requests
 
     - name: Run bike tracking script
-      run: python bike_tracker.py
+      run: python get_bikes.py
 
     - name: Commit and push CSV changes
       run: |
