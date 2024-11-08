@@ -1,0 +1,37 @@
+name: Bike Tracker
+
+on:
+  schedule:
+    # Schedule this to run every day at 8:00 AM
+    - cron: '0 13 * * *'
+
+jobs:
+  track_bikes:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false  # Disables token for security on public repos
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Run bike tracking script
+      run: python bike_tracker.py
+
+    - name: Commit and push CSV changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add bike_availability.csv
+        git commit -m "Update bike availability data"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
