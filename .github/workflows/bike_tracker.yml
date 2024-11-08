@@ -3,7 +3,7 @@ name: Bike Tracker
 on:
   schedule:
     # Runs every 5 minutes between 8:00 AM and 10:00 AM ET (12:00 PM - 2:00 PM UTC)
-    - cron: '*/5 19 * * *'
+    - cron: '30-59/5 20 * * *'
 
 jobs:
   track_bikes:
@@ -32,6 +32,8 @@ jobs:
         git config --local user.name "GitHub Actions"
         git add bike_availability.csv
         git commit -m "Update bike availability data"
-        git push
+        # Use GitHub token to authenticate the push
+        git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
