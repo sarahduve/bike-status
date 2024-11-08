@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         persist-credentials: false  # Disables token for security on public repos
 
@@ -22,6 +22,14 @@ jobs:
 
     - name: Install dependencies
       run: pip install requests
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Run bike tracking script
       run: python get_bikes.py
