@@ -1,6 +1,7 @@
 import requests
 import csv
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import os
 
 # URL and station ID
@@ -19,7 +20,7 @@ def fetch_bike_data():
 
         if station:
             available_bikes = station["num_ebikes_available"]
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            timestamp = datetime.now().astimezone(ZoneInfo("America/New_York")).strftime("%Y-%m-%d %H:%M:%S")
 
             # Append data to CSV, adding headers if the file is new
             file_exists = os.path.isfile(CSV_FILE)
