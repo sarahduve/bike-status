@@ -6,7 +6,7 @@ import os
 
 # URL and station ID
 URL = "https://gbfs.lyft.com/gbfs/2.3/bkn/en/station_status.json"
-STATION_ID = "66dbee85-0aca-11e7-82f6-3863bb44ef7c"
+STATION_ID = "66dbef85-0aca-11e7-82f6-3863bb44ef7c"
 CSV_FILE = "bike_availability.csv"
 
 # Function to fetch and log data
